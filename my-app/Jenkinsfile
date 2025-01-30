@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    environment {
+        PM2_APP_NAME = 'my-react-app'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'git@github.com:apkt1apkt/jenkins-vite.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'yarn install'
+            }
+        }
+    }
+}
